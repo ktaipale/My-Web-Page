@@ -22,11 +22,6 @@ h2 {
     color: rgb(11, 70, 78);
 }
 
-div {
-    color: rgb(11, 70, 78);
-    font-size: 12px;
-}
-
 ul {
     margin: 0;
     padding: 0;
@@ -45,7 +40,6 @@ footer {
 }
 
 nav {
-    background-color: rgb(0, 0, 8);
     background-image: url("../images/Background.png");
     background-position: center;
     position: sticky;
@@ -55,6 +49,7 @@ nav {
     padding: 10px 0 10px 0;
     justify-content: center;
     margin: 0;
+    z-index: 100; /* Jotta sivustolla olevat kuvat yms. varmasti jäävät bannerin alle*/
 }
 
 nav ul {
@@ -86,37 +81,69 @@ nav a:hover {
 }
 
 #home-content {
-
     display: flex;
-    gap: 40px;
+    gap: 20px;
     justify-content: center;
     padding: 30px;
+    align-items: flex-start; /* tekee elementeistä sen pituisia kuin niiden sisältö on!*/
 }
 
-.info-box-outer, .game-box-outer {
-    width: 300px;
+.header-banner {
+    width: 318px;
+    background: linear-gradient(to bottom, #e0f0ff 1%, #e0f0ff 5%, #0284ff 30%);
+    border-radius: 15px;
+    border: 1px groove rgb(30, 134, 209);
+}
+
+.banner-content {
+    display: flex;
+    text-align: left;
+    align-items: center;
+    gap: 8px; 
+}
+
+.banner-content h2 {
+    text-align: left;
+    font-size: 20px;
+    line-height: 20px;
+    margin: 0px -15px;
+    color: #000000;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.header-banner img {
+    width: 80px;
+    height: auto;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.3));
+    padding: 8px 0px 5px 0px;
+}
+
+.info-box-outer {
+    width: 294px;
     background: linear-gradient(to bottom, #e0f0ff 1%, #ffffff 12%, #ffffff 87%);
     border-radius: 15px;
-    border: 1px solid white;
+    border: 2px solid white;
     padding: 10px;
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    margin: 20px auto;
+    margin: 0px 0px;
 }
 
-
-.info-box-inner, .game-box-inner {
-    width: 300px;
-    min-width: 300px;
-    max-width: 300px;
+.info-box-inner {
+    width: 298px;
+    min-width: 298px;
+    max-width: 298px;
     flex-shrink: 0;
     background: rgb(233, 244, 252);
     border-radius: 10px;
     border: 2px groove rgb(180, 211, 233);
     padding: 0px 0px;
     height: auto;
+    margin: -3px -4px;
 }
 
-.info-box-header h3, .game-box-header h3 {
+.info-box-header h3 {
     text-align: left;
     font-size: 15px;
     line-height: 15px;
@@ -140,7 +167,7 @@ nav a:hover {
     margin: 2px 8px;
 }
 
-.info-box-inner p, .game-box-inner p {
+.info-box-inner p {
     margin: 5px 9px;
     font-size: 11px;
     line-height: 15px;
@@ -154,14 +181,13 @@ nav a:hover {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.info-box-inner a, .game-box-inner a {
+.info-box-inner a {
     display: inline-block;
     color: #0077cc;
     font-weight: bold;
     text-decoration: none;
 }
 
-.info-box-inner a:hover,
-.game-box-inner a:hover {
+.info-box-inner a:hover {
     opacity: 0.7;
 }
