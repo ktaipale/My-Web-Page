@@ -4,29 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main page</title>
-    <link rel="stylesheet" href="styles/styles.css" type="text/css">
+    <link rel="stylesheet" href="styles/dayStyle.css" type="text/css">
 </head>
 
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Front page</a></li>
-                <li><a href="games.html">Games</a></li>
-                <li><a href="mypage.html">My page</a></li>
-                <li><a href="settings.html">Settings</a></li>
-            </ul>
-            <h1>This is your page!</h1>
-        </nav>
+    <h1 class="visually-hidden">Your page!</h1>
     </header>
-    <section>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+    <nav class="main-nav">
+        <button class="nav-hamburger" aria-label="Open menu">☰</button>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="mypage.html">My page</a></li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </nav>
+    <section id="my-page-content">
+        <div class="header-banner">
+            <div class="banner-content">
+                <img src="images/Joystick.png">
+                <h2>This is your page</h2>
+            </div>
+            <div class="info-box-outer">
+                <div class="info-box-inner">
+                    <div class="info-box-header">
+                        <h3><a href="mypage.html">What can you do here?</a></h3>
+                    </div>
+                    <hr class="upper-line">
+                    <hr class="lower-line">
+                    <p>
+                        This page is your personal profile. You can customize it by adding different
+                        panels and filling them up with your personal interests such as favorite games
+                        and hobbies.
+                    </p>
+                    <p>
+                        In this page you can also change your account's settings.
+                    </p>
+                    <h4><a href="mypage.html">To account settings ▶</a></h4>
+                </div>
+            </div>
+        </div>
+        <div class="header-banner">
+            <div class="banner-content">
+                <img src="images/Joystick.png">
+                <h2>Your personal stats</h2>
+            </div>
+            <div class="info-box-outer">
+                <div class="info-box-inner">
+                    <div class="info-box-header">
+                        <h3><a href="mypage.html">Check your personal stats here</a></h3>
+                    </div>
+                    <hr class="upper-line">
+                    <hr class="lower-line">
+                    <p>In advanced stats you can view your playtime, playcount and your personal
+                        best scores in more detail.
+                    </p>
+                    <h4><a href="mypage.html">View personal stats ▶</a></h4>
+                </div>
+            </div>
+        </div>
     </section>
     <footer>
         To contact the page owner, you probably already know where to go since you are reading this.
     </footer>
+    <script> // Skaalataan sivun koko vastaamaan käytetyn tabletin näytön leveyttä
+        function scaleContent() {
+            const container = document.getElementById('my-page-content');
+            const nav = document.querySelector('nav');
+            if (!container || !nav) return;
+
+            // Tablettiskaalaus 426px - 768px
+            const minWidth = 426;
+            const maxWidth = 768;
+            const minScale = 0.6;
+            const maxScale = 1.0;
+
+            let vw = window.innerWidth;
+            if (vw < minWidth) vw = minWidth;
+            if (vw > maxWidth) vw = maxWidth;
+
+            if (vw >= minWidth && vw <= maxWidth) {
+                const scale = minScale + (maxScale - minScale) * (vw - minWidth) / (maxWidth - minWidth);
+                container.style.transform = `scale(${scale})`;
+                container.style.transformOrigin = 'top center';
+                container.style.marginTop = `${20 * scale}px`;
+            } else {
+                container.style.transform = '';
+                container.style.marginTop = '';
+            }
+
+            // Päivittää navigointilinkkien fonttikoon aina CSS:n --ui-scale:n mukaan
+            const links = nav.querySelectorAll('a');
+            links.forEach(link => {
+                let fontSize;
+                if (window.innerWidth <= 480) {
+                    // Pienennä fonttia kahdella yksiköllä
+                    fontSize = `calc(1rem * var(--ui-scale) - 2px)`;
+                } else {
+                    fontSize = `calc(1rem * var(--ui-scale))`;
+                }
+                link.style.fontSize = fontSize;
+            });
+        }
+
+        window.addEventListener('load', scaleContent);
+        window.addEventListener('resize', scaleContent);
+        window.addEventListener('hashchange', scaleContent);
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.querySelector(".nav-hamburger");
+        const navLinks = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+            if(navLinks.classList.contains("show")){
+            nav.style.zIndex = "9999"; // riittävän korkea
+            } else {
+                nav.style.zIndex = "100"; // palautetaan alkuperäiseen
+            }
+        });
+    });
+    </script>
 </body>
 </html>
