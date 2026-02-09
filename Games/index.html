@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solitaire</title>
+    <link rel="stylesheet" href="../styles/cards-style.css">
+</head>
+<body>
+    <div class="game-board">
+        <div class="upper-row">
+            <div class="deck" id="stock">Deck</div>
+            <div class="deck-card-slot" id="waste"></div>
+            <div class="empty-slot"></div>
+            <div class="spades">Sp</div>
+            <div class="hearts">He</div>
+            <div class="clubs">Cl</div>
+            <div class="diamonds">Di</div>
+        </div>
+
+        <div class="lower-row">
+            <div class="one-stack">1</div>
+            <div class="two-stack">2</div>
+            <div class="three-stack">3</div>
+            <div class="four-stack">4</div>
+            <div class="five-stack">5</div>
+            <div class="six-stack">6</div>
+            <div class="seven-stack">7</div>
+        </div>
+    </div>
+
+    <div id="controls">
+        <button id="new-game">Uusi peli</button>
+        <button id="test-end">Tarkista lopetus</button>
+    </div>
+    <div id="seed-display"></div>
+    <div id="game"></div>
+
+    <script type="module">
+        import Solitaire from './solitaire.js';
+        const game = new Solitaire();
+        document.getElementById("seed-display").textContent = `Seed: ${game.getSeed()}`;
+    </script>
+</body>
+</html>
