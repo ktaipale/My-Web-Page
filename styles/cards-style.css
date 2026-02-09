@@ -1,0 +1,219 @@
+/* =========================
+   PERUSASETUKSET
+========================= */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --card-width: 100%;
+    --gap: 10px;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding: 10px;
+    background: #054705;
+    min-height: 100vh;
+}
+
+/* =========================
+   PELIALUE
+========================= */
+
+.game-board {
+    width: min(70vw, 1400px);
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: var(--gap);
+    margin: 0 auto; 
+    max-height: calc(100vh - 20px);
+    overflow: hidden;
+}
+
+.upper-row, .lower-row {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--gap);
+    width: 100%;
+}
+
+/* =========================
+   KORTTIPAIKAT
+========================= */
+
+/* Määritelmät koskevat kaikkia Upper-row ja Lower-row -divien
+alla olevia div-tyyppisiä lapsia. */
+.upper-row > div,
+.lower-row > div {
+    /* Määritetään tähän div:iin sijoitettavien elementtien asettelu
+    riippumaan tämän div:n rajoista. */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #ffffff;
+    width: 100%;
+    aspect-ratio: 58 / 89;
+    margin-bottom: calc(var(--gap) * 3);
+    box-sizing: border-box;
+    overflow: hidden; 
+}
+
+.upper-row > div::before,
+.lower-row > div::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 3px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.upper-row > div:hover,
+.lower-row > div:hover {
+    background: rgba(255, 255, 255, 0.45);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.upper-row .empty-slot {
+    visibility: hidden;
+}
+
+/* =========================
+   YLÄRIVIN KORTTIPAIKAT
+========================= */
+
+#seed-display {
+    margin-top: var(--gap);
+    color: white;
+}
+
+#stock {
+    position: relative;
+    display: flex;
+    aspect-ratio: 58 / 89;
+    border-radius: 8px;
+    background: rgb(81, 204, 235);
+    justify-content: center;
+    align-items: center;
+}
+
+#stock .count {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    border-radius: 4px;
+    padding: 1px 4px;
+    pointer-events: none;
+}
+
+.card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 58 / 89;
+    border-radius: 8px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: black;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    box-sizing: border-box;
+    border: 2px solid rgb(0, 0, 0);
+}
+
+.card.face-up {
+    background: white;
+    color: black;
+}
+
+.card.face-down {
+    background: rgb(81, 204, 235); /* Kortin väärän puolen väri */
+    color: transparent; /* Kortin keskellä oleva maan logo pois näkyvistä */
+}
+
+.card.face-down .center {
+    display: none;        /* Piilottaa kortin symbolin sen ollessa väärin päin */
+}
+
+.card.face-down::before,
+.card.face-down::after {
+    content: "";        /* Poistetaan kortin numero näkyvistä */
+}
+
+.card[data-suit="♥"],
+.card[data-suit="♦"] {
+    color: crimson;
+}
+
+.card[data-suit="♠"],
+.card[data-suit="♣"] {
+    color: black;
+}
+
+.card .center {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+}
+
+/* before ja after aseettavat "koristelua" ennen ja jälkeen kortin varsinaisen sisällön,
+   toisin sanoen numeron ja maan. Tässä tapauksessa ylä- ja alakulmaan lisätään maan logo ja numero */
+.card::before {
+    content: attr(data-value) " " attr(data-suit);
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 14px;
+}
+
+.card::after {
+    content: attr(data-value) " " attr(data-suit);
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    font-size: 14px;
+}
+
+.card:hover {
+    background: rgb(224, 224, 224);
+}
+
+#stock:hover,
+.card.face-down:hover {
+    background: rgb(25, 133, 160);
+}
+
+.card,
+#stock {
+    user-select: none;
+}
+
+.count {
+    pointer-events: none;
+}
+
+.card.selected {
+    background-color: #fff9c4;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}

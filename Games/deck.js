@@ -3,8 +3,11 @@ const VALUE = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 
 export default class Deck {
     // Seed = pelin aloitushetki millisekunteina
-    constructor(seed = Date.now()) {
-        this.seed = seed;
+    constructor(seed) {
+        if (seed === undefined) {
+            throw new Error("Deck requires a seed");
+        }
+
         // Luodaan random-funktio tallentamalla random-muuttujaan funktio, jonka
         // mulberry32 palauttaa. Tämän jälkeen funktiota voidaan kutsua random() komennolla.
         this.random = mulberry32(seed);
@@ -19,10 +22,6 @@ export default class Deck {
             this.cards[newIndex] = this.cards[i];
             this.cards[i] = originalCard;
         }
-    }
-
-    getSeed() {
-        return this.seed;
     }
 }
     
@@ -45,6 +44,7 @@ class Card {
     constructor(suit, value) {
         this.suit = suit;
         this.value = value;
+        this.faceUp = false;
     }
 
 }
