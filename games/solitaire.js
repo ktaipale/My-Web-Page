@@ -77,7 +77,7 @@ export default class Solitaire {
         });
 
         // Tarkista lopetus -nappi
-        const testEndButton = document.getElementById("test-end");
+        const testEndButton = document.getElementById("test-end-btn");
         testEndButton.addEventListener("click", () => {
             // Luodaan uusi peli, jossa kaikki kortit ovat faceUp
             const testGame = new Solitaire({ allFaceUp: true });
