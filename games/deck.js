@@ -1,3 +1,6 @@
+/* Tämä tiedosto sisältää kaikki korttipakan ominaisuudet korttien luonnista aina satunnaisuuden 
+   generointiin. Tiedosto toimii yleismaailmallisesti kaikille klassisille korttipeleille */
+
 const SUIT = ["♠", "♣", "♥", "♦"]
 const VALUE = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
 

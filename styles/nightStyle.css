@@ -75,7 +75,7 @@ nav a:hover {
     gap: 20px;
     justify-content: center;
     padding: 30px;
-    align-items: flex-start; /* tekee elementeistä sen pituisia kuin niiden sisältö on!*/
+    align-items: flex-start; /* Tekee elementeistä sen pituisia kuin niiden sisältö on!*/
 }
 
 .header-banner {

@@ -138,7 +138,7 @@ nav a:hover {
     margin-bottom: 1.25rem;
     gap: 1.25rem;
     justify-content: center;
-    align-items: flex-start; /* tekee elementeistä sen pituisia kuin niiden sisältö on!*/
+    align-items: flex-start; /* Tekee elementeistä sen pituisia kuin niiden sisältö on!*/
 }
 
 .header-banner {

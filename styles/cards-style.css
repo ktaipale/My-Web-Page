@@ -177,7 +177,7 @@ alla olevia div-tyyppisiä lapsia. */
     font-size: 32px;
 }
 
-/* before ja after aseettavat "koristelua" ennen ja jälkeen kortin varsinaisen sisällön,
+/* Before ja after aseettavat "koristelua" ennen ja jälkeen kortin varsinaisen sisällön,
    toisin sanoen numeron ja maan. Tässä tapauksessa ylä- ja alakulmaan lisätään maan logo ja numero */
 .card::before {
     content: attr(data-value) " " attr(data-suit);
